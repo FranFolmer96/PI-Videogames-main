@@ -1,0 +1,25 @@
+.SearchBar {
+    padding: 20px;
+    margin: 20px;
+}
+
+.searchButton {
+    padding: 7px;
+    margin-left: 15px;
+    background-color: rgba(96, 85, 85, 0.987);
+    border-radius: 10px;
+    color: white;
+    
+}
+
+
+.inputSearchbar::placeholder { 
+    color: white; 
+}
+
+.inputSearchbar {
+   padding: 7px;
+   background-color: rgba(96, 85, 85, 0.987);
+    border-radius: 10px;
+    color: white;
+}
