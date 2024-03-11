@@ -4,11 +4,21 @@
 }
 
 .searchButton {
-    padding: 7px;
     margin-left: 15px;
-    background-color: rgba(96, 85, 85, 0.987);
-    border-radius: 10px;
-    color: white;
+    padding: 7px;
+    min-width: 130px;
+    height: 30px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background-size: 120% auto;
+    background-image: linear-gradient(315deg, #833ab4 0%, #fd1d1d 50%, #fcb045);
     
 }
 
@@ -19,7 +29,25 @@
 
 .inputSearchbar {
    padding: 7px;
-   background-color: rgba(96, 85, 85, 0.987);
-    border-radius: 10px;
-    color: white;
+   min-width: 130px;
+   height: 10px;
+   color: #000;
+   font-weight: bold;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   position: relative;
+   display: inline-block;
+   outline: none;
+   border-radius: 5px;
+   border: none;
+   background-size: 120% auto;
+   background-image: white;
 }
+
+
+  .inputSearchbar:hover {
+    background-position: right center;
+  }
+  .inputSearchbar:active {
+    top: 2px;
+  }

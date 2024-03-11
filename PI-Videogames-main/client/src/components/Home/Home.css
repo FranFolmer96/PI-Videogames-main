@@ -32,11 +32,12 @@
  
  .tilte {
    text-align: center;
-   color: hsl(40deg 46% 49%);
+   color: hsla(9, 71%, 45%, 0.928);
    padding: 60px;
    letter-spacing: 10px;
    font-size: 44px;
    margin: 0;
+   text-shadow: 5px 5px 10px 1px #000000;
  }
  
  .createButton, .rechargeButton, .filterNew {
