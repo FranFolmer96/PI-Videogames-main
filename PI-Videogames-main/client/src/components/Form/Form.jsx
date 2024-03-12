@@ -81,7 +81,6 @@ function Form() {
             released: '',
             genders:[],
             rating: '',
-            image: ''
          })
          alert('Videogame successfully created')
          history.push('/videogames')
