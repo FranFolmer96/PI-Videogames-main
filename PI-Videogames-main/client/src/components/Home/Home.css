@@ -1,6 +1,6 @@
 .containerHome{
    background-image: url(../../images/img-backgraund.jpg);
-   background-size:cover ; 
+   background-size:contain; 
    background-repeat: repeat;
    background-attachment:scroll;
    }

@@ -6,14 +6,12 @@ const { getDbInfo, getAllInfo, getApiInfo, getId } = require('../controllers/gam
 const { SUCCESS, CREATED, BAD_REQUEST, NOT_FOUND } = require('../controllers/status');
 
 router.get('/', async(req, res) => {
-   // localhost:3001/videogames?name=grand
-   const { name } = req.query; //name = grand
+   
+   const { name } = req.query; 
    try {
       let total = await getAllInfo();
 
-      // let total2 = total.map(e => typeof e.id === 'string' ? total.concat(e) : e)
-        
-      // console.log(total)
+     
       if(name) {
          let found = await total.filter(
                f => f.name.toLowerCase().includes(name.toLowerCase())
@@ -23,7 +21,7 @@ router.get('/', async(req, res) => {
          res.status(SUCCESS).send(found) : 
          res.status(NOT_FOUND).send('Game not found...');
       } else {
-         // console.log(total.length)
+         
          res.status(SUCCESS).send(total.flat());
       }
    } catch(err) {
@@ -59,21 +57,12 @@ router.post('/', async(req, res) => {
       
       if(!image) {
          try {
-            image = 'https://static.vecteezy.com/system/resources/previews/003/561/078/large_2x/silhouette-of-mysterious-man-free-photo.jpg'
+            image = 'https://cdn.vox-cdn.com/thumbor/q9CNivwPskHOm9NTuAZbreyQHzc=/0x0:1531x861/920x613/filters:focal(644x309:888x553):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/55584747/maxresdefault.0.jpg'
          } catch(err) {
             console.log(err)
          }
       }
       
-            // console.log(
-            //    name,
-            //    description,
-            //    platforms,
-            //    released,
-            //    rating,
-            //    image,
-            //    genders
-            // )
       
       const createdVideogame = await Videogame.create({
          name: name,
@@ -87,26 +76,26 @@ router.post('/', async(req, res) => {
       //    const found = await Gender.findAll({
       //       where: {name: e}
       //    })
-      //    createdVideogame.addGenre(found)
+      //    createdVideogame.addGender(found)
       // })
       console.log(genders)
       genders.forEach(async e => {
          const found = await Gender.findAll({
             where: {name: e}
          })
-         // console.log(found)
+         
          createdVideogame.addGender(found)
       })
       console.log(platforms)
       platforms.forEach(async e => {
-         // console.log(e)
+         
          const found = await Platform.findAll({
             where: {name: e}
          })  
          createdVideogame.addPlatform(found) 
-         // console.log(found)
+         
       })
-      // console.log(createdVideogame);
+      
       res.status(CREATED).send(createdVideogame);    
    } catch (err) {
       console.log(err)

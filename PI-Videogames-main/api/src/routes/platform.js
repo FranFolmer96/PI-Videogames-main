@@ -16,7 +16,6 @@ router.get('/', async(_req, res) => {
    const apiPlatform = (await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)).data.results
    try {
       let platforms = apiPlatform.map(p => p.platforms ? p.platforms : 'no Data')
-      // console.log(platforms)
       let platform = platforms.flat().map(p => p.platform ? p.platform.name : 'no data')
       platform.forEach(e => {
          if(e) {

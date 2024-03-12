@@ -2,31 +2,32 @@ import axios from 'axios'
 
 
 export const getVideogames = () => {
-    return async(dispatch) => {
-        let json = await axios.get('https://api.rawg.io/api/videogames')
-         // console.log(typeof json.data)
-         // console.log(json.data)
-
-        return dispatch({
-            type: 'GET_VIDEOGAMES',
-            payload: json.data
-        })
-
-    }  
-}
+   return async(dispatch) => {
+       try {
+           const response = await axios.get('https://api.rawg.io/api/games');
+           dispatch({
+               type: 'GET_VIDEOGAMES',
+               payload: response.data
+           });
+       } catch (error) {
+           console.error('Error fetching videogames:', error);
+       }
+   };
+};
 
 export const getGenders = () => {
- 
-    return async(dispatch) => {
-
-        let json = await axios.get('https://api.rawg.io/api/genders')
-      //   console.log(json.data)
-        return dispatch({
-            type: 'GET_GENDERS',
-            payload: json.data
-        })
-    }
-}
+   return async(dispatch) => {
+       try {
+           const response = await axios.get('https://api.rawg.io/api/genres');
+           dispatch({
+               type: 'GET_GENDERS',
+               payload: response.data
+           });
+       } catch (error) {
+           console.error('Error fetching genres:', error);
+       }
+   };
+};
 
 export const filterByGender = (payload) => {
     return {
@@ -52,7 +53,7 @@ export const sortByName = (payload) => {
 export const getByName = (name) => {
    return async(dispatch) => {
       try {
-         const json = await axios.get(`https://api.rawg.io/api/videogames?name=${name}`)
+         const json = await axios.get(`https://api.rawg.io/api/games?name=${name}`)
          return dispatch({
             type: 'GET_BY_NAME',
             payload: json.data
@@ -74,7 +75,7 @@ export const getById = (id) => {
    // console.log(id)
    return async(dispatch) => {
       try {
-         const json = await axios.get(`https://api.rawg.io/api/videogames/${id}`)
+         const json = await axios.get(`https://api.rawg.io/api/games/${id}`)
          console.log(json.data)
          return dispatch({
             type: 'GET_BY_ID',
@@ -97,7 +98,7 @@ export const postVideogame = (payload) => {
    return async (dispatch) => {
       try {
          // console.log(payload)
-         const json = await axios.post('https://api.rawg.io/api/videogames', payload)
+         const json = await axios.post('https://api.rawg.io/api/games', payload)
          // console.log(json.data)
          return dispatch({
             type: 'POST_VIDEOGAME',
@@ -111,12 +112,15 @@ export const postVideogame = (payload) => {
 
 
 export const getPlatforms = () => {
-
    return async(dispatch) => {
-       let json = await axios.get('https://api.rawg.io/api/platforms')
-       return dispatch({
-           type: 'GET_PLATFORMS',
-           payload: json.data
-       })
-   }
-}
+       try {
+           const response = await axios.get('https://api.rawg.io/api/platforms?');
+           dispatch({
+               type: 'GET_PLATFORMS',
+               payload: response.data
+           });
+       } catch (error) {
+           console.error('Error fetching platforms:', error);
+       }
+   };
+};

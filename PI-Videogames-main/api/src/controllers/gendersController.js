@@ -1,26 +1,27 @@
 const axios = require('axios');
-const { API_KEY } = process.env
-const { Videogame, Gender } = require('../db');
+const { API_KEY } = process.env;
+const { Gender } = require('../db');
 
-const getAllGenders = async() => {
-   const allGenders = (await axios.get(`https://api.rawg.io/api/genders?key=${API_KEY}`)).data;
-   const genders = allGenders.results?.map(e => e.name ? e.name : 'no data')
-   
-   genders.forEach(e => {
-      if(e) {
-        Gender.findOrCreate({
-            where: {
-               id: e.id,
-               name: e.name
-            }
-         })       
-      }
-   })
-   const gender = await Gender.findAll();
-   return gender;
-}
-
+const getAllGenders = async () => {
+    try {
+        const response = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
+        const allGenders = response.data.results;
+        allGenders.forEach(async (genre) => {
+            await Gender.findOrCreate({
+                where: {
+                    id: genre.id,
+                    name: genre.name
+                }
+            });
+        });
+        const genders = await Gender.findAll();
+        return genders;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Error fetching all genders');
+    }
+};
 
 module.exports = {
-   getAllGenders
-}
+    getAllGenders
+};

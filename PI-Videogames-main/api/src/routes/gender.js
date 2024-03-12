@@ -16,7 +16,7 @@ router.get('/', async(_req, res) => {
     //     res.status(NOT_FOUND).send('Not info')
     // }
     try {
-        const apigenders = (await axios.get(`https://api.rawg.io/api/genders?key=${API_KEY}`)).data.results
+        const apigenders = (await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)).data.results
         const apiGen = apigenders
         // console.log(apiGen)
         apiGen.map(async (e) => await Gender.findOrCreate({
@@ -27,7 +27,7 @@ router.get('/', async(_req, res) => {
         }))
         
         const genderDb = await Gender.findAll();
-        console.log('pase el findAll')
+        console.log('findAll')
         res.status(SUCCESS).send(genderDb);
     } catch (error) {
         console.log(error)     

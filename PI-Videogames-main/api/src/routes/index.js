@@ -4,16 +4,16 @@ const { Router } = require('express');
 
 
 const router = Router();
-const videogameRute = require('./videogames')
-const genderRute = require('./gender')
-const platformRute = require('./platform')
+const videogameRoute = require('./videogames')
+const genderRoute = require('./gender')
+const platformRoute = require('./platform')
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.use('/videogames', videogameRute)
-router.use('/gender', genderRute)
-router.use('/platforms', platformRute)
+router.use('/videogames', videogameRoute)
+router.use('/gender', genderRoute)
+router.use('/platforms', platformRoute)
 
 
 module.exports = router;
