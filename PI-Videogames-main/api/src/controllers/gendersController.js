@@ -6,14 +6,17 @@ const getAllGenders = async () => {
     try {
         const response = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
         const allGenders = response.data.results;
-        allGenders.forEach(async (genre) => {
+        
+        for (const genre of allGenders) {
             await Gender.findOrCreate({
                 where: {
                     id: genre.id,
                     name: genre.name
                 }
             });
-        });
+        }
+
+        // Obtener los géneros después de completar el async
         const genders = await Gender.findAll();
         return genders;
     } catch (error) {
